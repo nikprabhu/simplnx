@@ -191,4 +191,10 @@ void ReadCtfData::copyRawEbsdData(ebsdlib::CtfReader* reader) const
     auto& targetArray = m_DataStructure.getDataRefAs<Float32Array>(cellAttributeMatrixPath.createChildPath(ebsdlib::Ctf::Y));
     std::copy(fComp0, fComp0 + totalCells, targetArray.begin());
   }
+
+  {
+    auto* fComp0 = reinterpret_cast<float*>(reader->getPointerByName(ebsdlib::Ctf::ElasticStrainXX));
+    auto& targetArray = m_DataStructure.getDataRefAs<Float32Array>(cellAttributeMatrixPath.createChildPath(ebsdlib::Ctf::ElasticStrainXX));
+    std::copy(fComp0, fComp0 + totalCells, targetArray.begin());
+  }
 }
